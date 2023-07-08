@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.ListFragment;
 
 import com.example.ejercicio5.databinding.FragmentListBinding;
 
@@ -20,6 +21,8 @@ import com.example.ejercicio5.databinding.FragmentListBinding;
  * create an instance of this fragment.
  */
 public class FragmentList extends Fragment {
+    FragmentListBinding binding;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -80,3 +83,5 @@ public class FragmentList extends Fragment {
         return data;
     }
 }
+
+
