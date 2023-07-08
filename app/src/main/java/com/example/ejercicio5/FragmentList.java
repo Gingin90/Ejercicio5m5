@@ -10,6 +10,7 @@ import androidx.fragment.app.ListFragment;
 
 import com.example.ejercicio5.databinding.FragmentListBinding;
 
+import java.security.Identity;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,11 +34,11 @@ public class FragmentList extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private AdapterWords adapter=new AdapterWords();
 
     public FragmentList() {
         // Required empty public constructor
     }
-
 
     public static FragmentList newInstance(String param1, String param2) {
         FragmentList fragment = new FragmentList();
@@ -56,16 +57,6 @@ public class FragmentList extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
-    public void intListener() {
-        binding.floatingActionButton.setOnClickListener(v -> {
-            data.add("Word " + data.size());
-            //setData();
-            binding.RecyclerView.getAdapter().notifyItemInserted(data.size());
-        });
-
-        setData();
-    }
-
 
         @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,11 +65,15 @@ public class FragmentList extends Fragment {
         binding = FragmentListBinding.inflate(getActivity().getLayoutInflater());
 
 
+            setData();
+        binding.floatingActionButton.setOnClickListener(v -> {
+                    addData();
+
+                });
 
         return binding.getRoot();
     }
     public List<String> getData(){
-        List<String> data = new ArrayList<>();
         for(int i=0; i<20; i++){
             data.add("word "+ i);
         }
@@ -86,10 +81,12 @@ public class FragmentList extends Fragment {
     }
 
     public void setData(){
-        AdapterWords adapter = new AdapterWords();
         adapter.setData(getData());
         binding.RecyclerView.setAdapter(adapter);
     }
-}
+    public void addData(){
+        data.add("word "+String.valueOf(data.size()));
+        this.adapter.setData(data);
+        this.adapter.notifyDataSetChanged();
 
-
+}}

@@ -1,17 +1,12 @@
 package com.example.ejercicio5;
-
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.android.material.progressindicator.BaseProgressIndicator;
-
 import java.util.List;
-
 import com.example.ejercicio5.databinding.ItemBinding;
 
 public class AdapterWords extends RecyclerView.Adapter <AdapterWords.ViewHolder>{
@@ -31,6 +26,7 @@ public class AdapterWords extends RecyclerView.Adapter <AdapterWords.ViewHolder>
 
     @Override
     public int getItemCount() {
+
         return words.size();
     }
 
