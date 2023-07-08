@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ejercicio5</string>
+    <string name="agrega_nuevo_elemento">Agrega nuevo elemento</string>
 </resources>

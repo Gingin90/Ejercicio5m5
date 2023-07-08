@@ -22,6 +22,7 @@ import com.example.ejercicio5.databinding.FragmentListBinding;
  */
 public class FragmentList extends Fragment {
     FragmentListBinding binding;
+    List<String> data = new ArrayList<>();
 
 
     // TODO: Rename parameter arguments, choose names that match
@@ -37,15 +38,7 @@ public class FragmentList extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentList.
-     */
-    // TODO: Rename and change types and number of parameters
+
     public static FragmentList newInstance(String param1, String param2) {
         FragmentList fragment = new FragmentList();
         Bundle args = new Bundle();
@@ -63,16 +56,25 @@ public class FragmentList extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+    public void intListener() {
+        binding.floatingActionButton.setOnClickListener(v -> {
+            data.add("Word " + data.size());
+            //setData();
+            binding.RecyclerView.getAdapter().notifyItemInserted(data.size());
+        });
 
-    @Override
+        setData();
+    }
+
+
+        @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        FragmentListBinding binding = FragmentListBinding.inflate(getActivity().getLayoutInflater());
-        AdapterWords adapter = new AdapterWords();
-        adapter.setData(getData());
+        binding = FragmentListBinding.inflate(getActivity().getLayoutInflater());
 
-        binding.RecyclerView.setAdapter(adapter);
+
+
         return binding.getRoot();
     }
     public List<String> getData(){
@@ -81,6 +83,12 @@ public class FragmentList extends Fragment {
             data.add("word "+ i);
         }
         return data;
+    }
+
+    public void setData(){
+        AdapterWords adapter = new AdapterWords();
+        adapter.setData(getData());
+        binding.RecyclerView.setAdapter(adapter);
     }
 }
 
